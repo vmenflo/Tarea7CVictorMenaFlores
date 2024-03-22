@@ -31,7 +31,7 @@ public class Main {
         }
         
         //Generamos el fichero de generos
-        Metodo.generarFicheroGeneros(conjuntoGeneros);
+        Escritura_Lectura.generarFicheroGeneros(conjuntoGeneros);
         
         //Generamos un map con los contadores
         Map<String,Integer> contadorGeneros = Metodo.generarMapContador(lista);
@@ -40,6 +40,6 @@ public class Main {
         System.out.println("Muestro el map");
         contadorGeneros.forEach((clave, valor) -> System.out.println("Género: " + clave + " -- cantidad: " + valor));
         //Generamos el fichero
-        Metodo.generarFicheroContador(contadorGeneros);
+        Escritura_Lectura.generarFicheroContador(contadorGeneros);
     }
 }

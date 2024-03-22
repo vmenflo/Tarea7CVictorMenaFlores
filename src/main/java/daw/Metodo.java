@@ -28,24 +28,12 @@ import java.util.TreeMap;
  */
 public class Metodo {
 
-    //Métodos
-    //Leer el fichero para extraer los datos
-    public static List<String> extraerDatos() {
-        List<String> lineas = new ArrayList<>();
-        try {
-            lineas = Files.readAllLines(Paths.get("personas.csv"),
-                    StandardCharsets.UTF_8);
-        } catch (IOException ex) {
-            System.out.println("Error leyendo el fichero");
-        }
-        lineas.remove(0);
-        return lineas;
-    }
+    //MétodoS
 
     //Método para almacenar las Personas en la listaPersonas
     public static List<Persona> generarListaPersona() {
         //En esta lista almacenamos los datos del fichero
-        List<String> lista = extraerDatos();
+        List<String> lista = Escritura_Lectura.extraerDatos();
         //En esta lista almacenamos las personas
         List<Persona> listaPersona = new ArrayList<>();
         //Bucle para recorrer los datos y convertislos en Personas
@@ -70,20 +58,7 @@ public class Metodo {
         }
        return conjuntoGeneros;
     }
-    //Método para gener un fichero a raiz del conjunto
-    public static void generarFicheroGeneros(Set<String> lista){
-        // Almacenamos los datos del set en una array
-        String[] generos=lista.toArray(new String[lista.size()-1]);
-        // Bucle para crear el archivo
-        for (int i = 0; i < generos.length; i++) {
-            try {
-                Files.write(Paths.get("generos.txt"), (generos[i] + "\n").getBytes(StandardCharsets.UTF_8),
-                        StandardOpenOption.CREATE, StandardOpenOption.APPEND);
-            } catch (IOException ex) {
-                System.out.println("Error creando el fichero");
-            }
-        }
-    }
+    
     // Método para generar un map con el número de personas de cada género
     public static Map<String,Integer> generarMapContador(List<Persona> lista){
         Map<String,Integer> listado = new HashMap();
@@ -98,20 +73,5 @@ public class Metodo {
         return listado;
     }
     
-    //Método para crear fichero con el numero de generos
-    public static void generarFicheroContador(Map<String,Integer> lista){
-        List<String> generos = new ArrayList<>();
-        
-        // Almacenamos los datos del map en una array
-        lista.forEach((clave,valor)-> generos.add(clave+","+valor));
-        // Bucle para crear el archivo
-        for (int i = 0; i < generos.size(); i++) {
-            try {
-                Files.write(Paths.get("contadorGeneros.csv"), (generos.get(i) + "\n").getBytes(StandardCharsets.UTF_8),
-                        StandardOpenOption.CREATE, StandardOpenOption.APPEND);
-            } catch (IOException ex) {
-                System.out.println("Error creando el fichero");
-            }
-        }
-    }
+    
 }
